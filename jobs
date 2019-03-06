@@ -1,0 +1,40 @@
+
+job('maven_project') {
+
+    description('Maven dsl project')
+
+    scm {
+        git('https://github.com/venkat240042/DevOpsClassCodes.git', 'master', {node -> node / 'extensions' << '' })
+    }
+  
+    steps {
+        maven {
+            mavenInstallation('mymaven')
+            goals('clean')
+        }
+        maven {
+            mavenInstallation('mymaven')
+            goals('test')
+        }
+        maven {
+            mavenInstallation('mymaven')
+            goals('compile')
+        }
+      	maven {
+            mavenInstallation('mymaven')
+            goals('pmd:pmd')
+        }
+        maven {
+            mavenInstallation('mymaven')
+            goals('package')
+        }
+        maven {
+            mavenInstallation('mymaven')
+            goals('install')
+        }
+    }
+
+    publishers {
+        mailer('venkata.kodali81@gmail.com', true, true)
+    }
+}
