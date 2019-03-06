@@ -6,6 +6,28 @@ job('maven_project') {
     scm {
         git('https://github.com/venkat240042/DevOpsClassCodes.git', 'master', {node -> node / 'extensions' << '' })
     }
+
+    steps {
+        maven {
+            mavenInstallation('mymaven')
+            goals('clean')
+        }
+        maven {
+            mavenInstallation('mymaven')
+            goals('test')
+        }
+        maven {
+            mavenInstallation('mymaven')
+            goals('compile')
+        }
+
+job('git-dsl-job') {
+
+    description('job to automate DSL')
+
+    scm {
+        git('https://github.com/venkat240042/DevOpsClassCodes.git', 'master', {node -> node / 'extensions' << '' })
+    }
   
     steps {
         maven {
